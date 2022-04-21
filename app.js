@@ -1,9 +1,46 @@
+
+
+
+
+
+// funkce, která vytvoří HTML prvky jednoho receptu (na základě indexu v poli)
+function recipe (index) {
+
+    let viewPicture = document.createElement('div');
+    viewPicture.className = 'recept-obrazek';
+	let picture = document.createElement('img');
+	picture.src = recepty[index].img;
+    viewPicture.appendChild(picture);
+    document.querySelector('.recepty').appendChild(viewPicture);
+
+    let viewTitle = document.createElement('div');
+    viewTitle.className = 'recept-info'
+    let title = document.createElement('h3');
+    title.innerHTML = recepty[index].nadpis;
+    viewTitle.appendChild(title);
+    document.querySelector('.recepty').appendChild(viewTitle);
+
+    let createRecipe = document.createElement('div');
+    createRecipe.className = 'recept'
+    createRecipe.appendChild(viewPicture)
+    createRecipe.appendChild(viewTitle)
+    document.querySelector('.recepty').appendChild(createRecipe);
+}
+
+// funkce pro vygenerování seznamu receptů z databáze do prvku id="recepty"
+
+// function zobrazUkoly() {
+// 	seznam.innerHTML = '';
+
+// 	if (ukoly.length > 0) {
+// 		for(let i = 0; i < ukoly.length; i++) {
+// 			let ukol = vytvorPrvekUkolu(i, ukoly[i].popis, ukoly[i].dulezitost);
+// 			seznam.appendChild(ukol);
+// 		}
+// 	}
+// }
+
 /*
-Co je za úkol v tomto projektu:
-
-1) Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
-HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
-
 2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
 by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
