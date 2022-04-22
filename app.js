@@ -9,13 +9,16 @@ function recipe(index) {
     let viewPicture = document.createElement('div');
     viewPicture.className = 'recept-obrazek';
 	let picture = document.createElement('img');
+    picture.setAttribute('data-vyber',[index]);
 	picture.src = recepty[index].img;
     viewPicture.appendChild(picture);
     document.querySelector('.recepty').appendChild(viewPicture);
 
     let viewTitle = document.createElement('div');
     viewTitle.className = 'recept-info';
+    viewTitle.setAttribute('data-vyber',[index]);
     let title = document.createElement('h3');
+    title.setAttribute('data-vyber',[index]);
     title.innerHTML = recepty[index].nadpis;
     viewTitle.appendChild(title);
     document.querySelector('.recepty').appendChild(viewTitle);
@@ -53,20 +56,18 @@ by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
 
 //funkce měnící detail receptu podle toho, na co se kliklo 
-function changeRecipeDetails(){
+function changeRecipeDetails(event){
+    let myChoice = event.target.dataset.vyber
     
-    // document.querySelector('#recept-foto').src= recepty[myChoice].img;
-    // document.querySelector('#recept-kategorie').innerHTML= recepty[index].kategorie;
-    // document.querySelector('#recept-hodnoceni').innerHTML= recepty[index].hodnoceni;
-    // document.querySelector('#recept-nazev').innerHTML= recepty[index].nadpis;
-    // document.querySelector('#recept-popis').innerHTML= recepty[index].popis;
+    document.querySelector('#recept-foto').src= recepty[myChoice].img;
+    document.querySelector('#recept-kategorie').innerHTML= recepty[myChoice].kategorie;
+    document.querySelector('#recept-hodnoceni').innerHTML= recepty[myChoice].hodnoceni;
+    document.querySelector('#recept-nazev').innerHTML= recepty[myChoice].nadpis;
+    document.querySelector('#recept-popis').innerHTML= recepty[myChoice].popis;
 }
 
 
 /*
-5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
-Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
-recept-hodnoceni, recept-nazev, recept-popis.
 
 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
