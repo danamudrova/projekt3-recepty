@@ -1,10 +1,10 @@
 
 
-
+showAllRecipe()
 
 
 // funkce, která vytvoří HTML prvky jednoho receptu (na základě indexu v poli)
-function recipe (index) {
+function recipe(index) {
 
     let viewPicture = document.createElement('div');
     viewPicture.className = 'recept-obrazek';
@@ -28,17 +28,11 @@ function recipe (index) {
 }
 
 // funkce pro vygenerování seznamu receptů z databáze do prvku id="recepty"
-
-// function zobrazUkoly() {
-// 	seznam.innerHTML = '';
-
-// 	if (ukoly.length > 0) {
-// 		for(let i = 0; i < ukoly.length; i++) {
-// 			let ukol = vytvorPrvekUkolu(i, ukoly[i].popis, ukoly[i].dulezitost);
-// 			seznam.appendChild(ukol);
-// 		}
-// 	}
-// }
+function showAllRecipe(){
+    for(let i = 0; i < recepty.length; i++) {
+		recipe(i);
+    }
+}
 
 /*
 2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
