@@ -39,25 +39,33 @@ function showAllRecipe(){
     for(let i = 0; i < recepty.length; i++) {
 		recipe(i); 
         };
+        
 }
 
 
-/* 
-
-filtrováí polí 
 
 
-2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
-by se měl seznam receptů vyfiltrovat podle hledaného slova.
+//Při kliknutí na tlačítko Hledat seznam receptů vyfiltrovat podle hledaného slova
 
-3) Doplň filtrovanání receptů podle kategorie.
+function searchRecipe(){
 
-4) Doplň řazení receptů podle hodnocení.*/
+    let bla = document.querySelector('#hledat').value 
+    console.log(bla)
+
+}
+
+
+//3) Doplň filtrovanání receptů podle kategorie.
+
+//4) Doplň řazení receptů podle hodnocení.
 
 
 //funkce měnící detail receptu podle toho, na co se kliklo 
 function changeRecipeDetails(event){
     let myChoice = event.target.dataset.vyber
+    let newPicture = document.createElement('img');
+    newPicture.id = 'recept-foto';
+    document.querySelector('.recept-detail-obrazek').appendChild(newPicture)
     
     document.querySelector('#recept-foto').src= recepty[myChoice].img;
     document.querySelector('#recept-kategorie').innerHTML= recepty[myChoice].kategorie;
