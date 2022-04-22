@@ -124,13 +124,14 @@ h1 {
 }
 
 
-
 .recepty {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     padding: 10px;
     background-color: #efefef;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    overflow: auto;
+    height: 640px;
 }
 
 .recept {
