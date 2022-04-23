@@ -1,7 +1,7 @@
 
 
-showAllRecipe()
-
+showAllRecipe();
+showLastRecipe();
 
 // funkce, která vytvoří HTML prvky jednoho receptu (na základě indexu v poli)
 function recipe(index) {
@@ -38,8 +38,7 @@ function recipe(index) {
 function showAllRecipe(){
     for(let i = 0; i < recepty.length; i++) {
 		recipe(i); 
-        };
-        
+        };     
 }
 
 
@@ -63,19 +62,34 @@ function searchRecipe(){
 //funkce měnící detail receptu podle toho, na co se kliklo 
 function changeRecipeDetails(event){
     let myChoice = event.target.dataset.vyber
+    //uložení výběru do local storage
+    localStorage.myChoice = JSON.stringify(myChoice);
+    changeRecipe(myChoice);
+}
+
+//funkce tvorby detailu
+function changeRecipe(index){
     let newPicture = document.createElement('img');
     newPicture.id = 'recept-foto';
-    document.querySelector('.recept-detail-obrazek').appendChild(newPicture)
+    document.querySelector('.recept-detail-obrazek').appendChild(newPicture);
     
-    document.querySelector('#recept-foto').src= recepty[myChoice].img;
-    document.querySelector('#recept-kategorie').innerHTML= recepty[myChoice].kategorie;
-    document.querySelector('#recept-hodnoceni').innerHTML= recepty[myChoice].hodnoceni;
-    document.querySelector('#recept-nazev').innerHTML= recepty[myChoice].nadpis;
-    document.querySelector('#recept-popis').innerHTML= recepty[myChoice].popis;
+    document.querySelector('#recept-foto').src= recepty[index].img;
+    document.querySelector('#recept-kategorie').innerHTML= recepty[index].kategorie;
+    document.querySelector('#recept-hodnoceni').innerHTML= recepty[index].hodnoceni;
+    document.querySelector('#recept-nazev').innerHTML= recepty[index].nadpis;
+    document.querySelector('#recept-popis').innerHTML= recepty[index].popis;
 }
 
 
-/*
+//funkce pro zobrazení posledníhi receptu
+function showLastRecipe(){
+let lastChoice = localStorage.myChoice;
 
-6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
-*/
+if(lastChoice === null || lastChoice === undefined) {
+    myChoice = [];
+} else {
+    myChoice = JSON.parse(lastChoice);
+}
+changeRecipe(myChoice);
+}
+
