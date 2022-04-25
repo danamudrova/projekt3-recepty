@@ -47,6 +47,7 @@ function showAllRecipe(){
 }
 
 
+//FILTROVÁNÍ
 //Při kliknutí na tlačítko Hledat seznam receptů vyfiltrovat podle hledaného slova
 
 function searchRecipe(){
@@ -57,11 +58,65 @@ function searchRecipe(){
 }
 
 
-//3) Doplň filtrovanání receptů podle kategorie.
+//funkce na vyčištění seznamu receptů
+function clearRecipe(){
+    document.getElementById('recepty').innerHTML=''
+}
 
-//4) Doplň řazení receptů podle hodnocení.
+
+// filtrovanání receptů podle kategorie
+document.querySelector('#kategorie').onchange = sorting 
+
+function sorting() {
+    let jidlo = document.getElementById("kategorie");
+    clearRecipe();
+
+    if (jidlo.value ==="Snídaně"){ 
+        recepty.filter(breakfast)
+    }
+    else if (jidlo.value === "Dezert"){
+        recepty.filter(dessert)
+    }
+    else if (jidlo.value === "Hlavní jídlo"){
+        recepty.filter(lunch)
+    }
+}  
+
+function breakfast(kateg){
+    let poradi = recepty.indexOf(kateg)
+   
+    if (kateg.kategorie === "Snídaně"){
+       recipe(poradi); 
+    }
+}
+
+function dessert(kateg){
+    let poradi = recepty.indexOf(kateg)
+   
+    if (kateg.kategorie === "Dezert"){
+       recipe(poradi); 
+    }
+}
+
+function lunch(kateg){
+    let poradi = recepty.indexOf(kateg)
+   
+    if (kateg.kategorie === "Hlavní jidlo"){
+       recipe(poradi); 
+    }
+}
 
 
+//řazení receptů podle hodnocení
+document.querySelector('#razeni').onchange = evaluateRecipe 
+
+function evaluateRecipe(){
+
+    
+}
+
+
+//DETAIL
 //funkce měnící detail receptu podle toho, na co se kliklo 
 function changeRecipeDetails(event){
     let myChoice = event.target.dataset.vyber;
