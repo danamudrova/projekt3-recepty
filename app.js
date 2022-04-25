@@ -1,7 +1,12 @@
 
-
+//načti recepty
 showAllRecipe();
-showLastRecipe();
+
+// a pokud je něco v local storage, tak i ten poslední recept
+if (localStorage.length !== 0 ){
+    showLastRecipe();
+};
+
 
 // funkce, která vytvoří HTML prvky jednoho receptu (na základě indexu v poli)
 function recipe(index) {
@@ -42,8 +47,6 @@ function showAllRecipe(){
 }
 
 
-
-
 //Při kliknutí na tlačítko Hledat seznam receptů vyfiltrovat podle hledaného slova
 
 function searchRecipe(){
@@ -61,18 +64,14 @@ function searchRecipe(){
 
 //funkce měnící detail receptu podle toho, na co se kliklo 
 function changeRecipeDetails(event){
-    let myChoice = event.target.dataset.vyber
+    let myChoice = event.target.dataset.vyber;
     //uložení výběru do local storage
     localStorage.myChoice = JSON.stringify(myChoice);
     changeRecipe(myChoice);
 }
 
 //funkce tvorby detailu
-function changeRecipe(index){
-    let newPicture = document.createElement('img');
-    newPicture.id = 'recept-foto';
-    document.querySelector('.recept-detail-obrazek').appendChild(newPicture);
-    
+function changeRecipe(index){  
     document.querySelector('#recept-foto').src= recepty[index].img;
     document.querySelector('#recept-kategorie').innerHTML= recepty[index].kategorie;
     document.querySelector('#recept-hodnoceni').innerHTML= recepty[index].hodnoceni;
@@ -86,7 +85,7 @@ function showLastRecipe(){
 let lastChoice = localStorage.myChoice;
 
 if(lastChoice === null || lastChoice === undefined) {
-    myChoice = [];
+    
 } else {
     myChoice = JSON.parse(lastChoice);
 }
