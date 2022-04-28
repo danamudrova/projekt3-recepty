@@ -19,13 +19,13 @@ function recipe(index) {
 
     let viewTitle = document.createElement('div');
     viewTitle.className = 'recept-info';
-    viewTitle.setAttribute('data-vyber',[index]);
     let title = document.createElement('h3');
     title.innerHTML = recepty[index].nadpis;
     viewTitle.appendChild(title);
 
     let createRecipe = document.createElement('div');
     createRecipe.className = 'recept';
+    createRecipe.setAttribute('data-vyber',[index]);
     //přidá každému vytvořenému receptu klikatelnost, která spustí funkci zobrazení detailu
     createRecipe.addEventListener('click', () => {
 		changeRecipeDetails(index);
@@ -62,7 +62,6 @@ function clearRecipe(){
     document.getElementById('recepty').innerHTML=''
 }
 
-
 // filtrovanání receptů podle kategorie
 document.querySelector('#kategorie').onchange = sorting 
 
@@ -70,9 +69,8 @@ function sorting() {
     let jidlo = document.getElementById("kategorie");
     clearRecipe();
     
-
     if (jidlo.value ==="Snídaně"){ 
-        recepty.filter(breakfast) 
+     recepty.filter(breakfast)
     }
     else if (jidlo.value === "Dezert"){
         recepty.filter(dessert)
@@ -107,12 +105,37 @@ function lunch(kateg){
 }
 
 
-//řazení receptů podle hodnocení
+//řazení receptů podle hodnocení 
 document.querySelector('#razeni').onchange = evaluateRecipe 
 
+
 function evaluateRecipe(){
-//porovnat s recepty.hodnoceni a seřadit od nejvíc po nejmíň 
-    
+    clearRecipe()
+    let jidlo = document.getElementById("razeni");
+    if (jidlo.value == 1){ 
+        showAllRecipe(recepty.sort(best))
+         //POZOR - BUG - když kliknu na ten sorted recept, tak se mi příště načte jiný!prohozené indexy...
+    } else {
+        showAllRecipe(recepty.sort(worst))
+        
+    }
+}
+
+function best(rec1, rec2){
+    if (rec1.hodnoceni<rec2.hodnoceni){
+        return 1;
+    } else {
+        return -1;
+    }
+}
+
+function worst(rec1, rec2){
+if (rec1.hodnoceni>rec2.hodnoceni){
+return 1;
+    } else {
+return -1;
+}
+
 }
 
 //DETAIL
@@ -120,6 +143,7 @@ function evaluateRecipe(){
 function changeRecipeDetails(index){
     let myChoice = index;
     //uložení výběru do local storage
+       
     localStorage.myChoice = JSON.stringify(myChoice);
     changeRecipe(myChoice);
 }
