@@ -50,11 +50,13 @@ function showAllRecipe(){
 document.querySelector('#hledat').onkeypress = searchRecipe 
 
 function searchRecipe(){
+    clearRecipe();
+    let input = document.getElementById("hledat");
+  
+    let filter = input.value.toUpperCase()
     
-
-    //porovnej input s tím,co je v recepty.nadpis a vyfiltruj to
-
 }
+
 
 
 //funkce na vyčištění seznamu receptů
@@ -108,16 +110,13 @@ function lunch(kateg){
 //řazení receptů podle hodnocení 
 document.querySelector('#razeni').onchange = evaluateRecipe 
 
-
 function evaluateRecipe(){
     clearRecipe()
     let jidlo = document.getElementById("razeni");
     if (jidlo.value == 1){ 
         showAllRecipe(recepty.sort(best))
-         //POZOR - BUG - když kliknu na ten sorted recept, tak se mi příště načte jiný!prohozené indexy...
     } else {
         showAllRecipe(recepty.sort(worst))
-        
     }
 }
 
@@ -130,22 +129,20 @@ function best(rec1, rec2){
 }
 
 function worst(rec1, rec2){
-if (rec1.hodnoceni>rec2.hodnoceni){
-return 1;
+    if (rec1.hodnoceni>rec2.hodnoceni){
+        return 1;
     } else {
-return -1;
-}
-
+        return -1;
+    }
 }
 
 //DETAIL
 //funkce měnící detail receptu podle toho, na co se kliklo 
 function changeRecipeDetails(index){
-    let myChoice = index;
-    //uložení výběru do local storage
-       
+    let myChoice = recepty[index].ID;
+    //uložení ID výběru do local storage
     localStorage.myChoice = JSON.stringify(myChoice);
-    changeRecipe(myChoice);
+    changeRecipe(index);
 }
 
 //funkce tvorby detailu
