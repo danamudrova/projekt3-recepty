@@ -38,7 +38,7 @@ function recipe(index) {
 
 // funkce pro vygenerování seznamu receptů z databáze do prvku id="recepty"
 function showAllRecipe(){
-    for(let i = 0; i < recepty.length; i++) {
+    for(let i = 0; i < recepty.length; i++){
 		recipe(i); 
         };     
 }
@@ -47,17 +47,18 @@ function showAllRecipe(){
 //FILTROVÁNÍ
 //Při kliknutí na tlačítko Hledat seznam receptů vyfiltrovat podle hledaného slova
 
-document.querySelector('#hledat').onkeypress = searchRecipe 
+document.querySelector('#hledat').onkeyup = searchRecipe 
 
 function searchRecipe(){
-    clearRecipe();
     let input = document.getElementById("hledat");
-  
-    let filter = input.value.toUpperCase()
-    
+    let text = input.value.toUpperCase();
+    clearRecipe();
+    for (i = 0; i < recepty.length; i++){   
+        if (recepty[i].nadpis.toUpperCase().indexOf(text) > -1 ){
+            recipe(i);
+        }
+    }      
 }
-
-
 
 //funkce na vyčištění seznamu receptů
 function clearRecipe(){
@@ -105,7 +106,6 @@ function lunch(kateg){
        recipe(poradi); 
     }
 }
-
 
 //řazení receptů podle hodnocení 
 document.querySelector('#razeni').onchange = evaluateRecipe 
