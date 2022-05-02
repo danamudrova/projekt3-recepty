@@ -133,7 +133,7 @@ const recepty = [
     hodnoceni: 4.9,
     kategorie: 'Hlavní jidlo',
     stitek: 'hlavniJidlo',
-    img: './images/perkelt.jpg'
+    img: 'images/perkelt.JPG'
   },
   { ID:17,
     nadpis: 'Irské scones',
@@ -141,6 +141,6 @@ const recepty = [
     hodnoceni: 4.8,
     kategorie: 'Dezert',
     stitek: 'dezert',
-    img: './images/scones.jpg'
+    img: 'images/scones.JPG'
   },
 ]
